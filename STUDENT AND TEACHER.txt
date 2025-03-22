@@ -1,0 +1,32 @@
+% Facts
+student(john, 'Mathematics').
+student(mary, 'Computer Science').
+student(alice, 'Physics').
+
+teacher('Dr. Smith', 'Mathematics').
+teacher('Dr. Johnson', 'Computer Science').
+teacher('Dr. Brown', 'Physics').
+
+subject_code('Mathematics', 101).
+subject_code('Computer Science', 102).
+subject_code('Physics', 103).
+
+% Rules
+assign_teacher(Student, Teacher) :-
+    student(Student, Subject),
+    teacher(Teacher, Subject).
+
+assign_subject_code(Student, Code) :-
+    student(Student, Subject),
+    subject_code(Subject, Code).
+
+% Query Examples
+% To find out which teacher is assigned to John:
+% ?- assign_teacher(john, Teacher).
+
+% To find the subject code assigned to Mary:
+% ?- assign_subject_code(mary, Code).
+
+
+
+INPUT:?- assign_teacher(john, Teacher).
