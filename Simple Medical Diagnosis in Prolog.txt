@@ -1,0 +1,12 @@
+/* Simple Medical Diagnosis in Prolog with One Input */
+
+disease(cold) :- symptom(runny_nose).
+disease(flu) :- symptom(fever).
+disease(covid_19) :- symptom(cough).
+
+diagnose :- disease(D), write('You may have: '), write(D), nl, halt.
+diagnose :- write('No matching disease found. Consult a doctor.'), nl, halt.
+
+symptom(S) :- write('Enter your symptom: '), read(S).
+
+start :- write('Medical Diagnosis System'), nl, diagnose.
