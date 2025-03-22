@@ -1,0 +1,13 @@
+/* Simple Backward Chaining in Prolog */
+
+/* Facts */
+rule(a, b).
+rule(b, c).
+rule(c, d).
+
+/* Backward Chaining Inference */
+prove(X) :- rule(Y, X), prove(Y).
+prove(X) :- known(X), write('Confirmed: '), write(X), nl.
+
+/* Query */
+start :- write('Enter goal: '), read(Goal), prove(Goal).
