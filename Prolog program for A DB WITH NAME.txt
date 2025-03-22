@@ -1,0 +1,17 @@
+% Facts for the database
+person(john_doe, '1990-05-15').
+person(mary_smith, '1985-11-20').
+person(alice_jones, '1992-03-30').
+person(bob_brown, '1988-07-25').
+
+% Rule to find the DOB of a person
+find_dob(Name, Dob) :-
+    person(Name, Dob).
+
+% Rule to find the name of a person given their DOB
+find_name(Dob, Name) :-
+    person(Name, Dob).
+
+
+
+INPUT:?- find_dob(john_doe, Dob).
