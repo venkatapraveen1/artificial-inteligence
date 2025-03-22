@@ -1,0 +1,13 @@
+% Base case: sum from 1 to 1 is 1
+sum(1, 1).
+
+% Recursive case: sum from 1 to n is n + sum from 1 to n-1
+sum(N, Sum) :-
+    N > 1,
+    N1 is N - 1,
+    sum(N1, Sum1),
+    Sum is N + Sum1.
+
+
+
+INPUT:?- sum(5, Sum).
