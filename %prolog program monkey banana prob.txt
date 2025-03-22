@@ -1,0 +1,22 @@
+% Prolog Program: Monkey Banana Problem
+
+% Facts: Initial state of the monkey, banana, and room layout
+state(at_door, on_floor, at_window, has_not).
+
+% Rules: Possible actions the monkey can take
+move(state(middle, on_box, middle, has_not), grasp, state(middle, on_box, middle, has)).
+move(state(P, on_floor, P, H), climb, state(P, on_box, P, H)).
+move(state(P1, on_floor, P1, H), push, state(P2, on_floor, P2, H)) :- P1 \= P2.
+move(state(P1, on_floor, B, H), walk, state(P2, on_floor, B, H)) :- P1 \= P2.
+
+% Goal state
+can_get_banana(State) :- State = state(_, _, _, has).
+can_get_banana(State1) :- 
+    move(State1, _, State2), 
+    can_get_banana(State2).
+
+% Query example:
+% Input:
+% ?- can_get_banana(state(at_door, on_floor, at_window, has_not)).
+% Output:
+% true (if the sequence of actions leads to getting the banana)
