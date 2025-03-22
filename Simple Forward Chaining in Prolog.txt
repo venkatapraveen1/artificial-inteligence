@@ -1,0 +1,13 @@
+/* Simple Forward Chaining in Prolog with Input */
+
+/* Facts */
+rule(a, b).
+rule(b, c).
+rule(c, d).
+
+/* Forward Chaining Inference */
+infer(X) :- rule(X, Y), \+ known(Y), assertz(known(Y)), write('Derived: '), write(Y), nl, infer(Y).
+infer(_).
+
+/* Query */
+start :- write('Enter initial fact: '), read(Fact), assertz(known(Fact)), infer(Fact).
