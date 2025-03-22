@@ -1,0 +1,37 @@
+% Facts: Defining planets and their details (name, distance from the Sun, type)
+planet(mercury, 57.9, terrestrial).
+planet(venus, 108.2, terrestrial).
+planet(earth, 149.6, terrestrial).
+planet(mars, 227.9, terrestrial).
+planet(jupiter, 778.3, gas_giant).
+planet(saturn, 1427, gas_giant).
+planet(uranus, 2871, ice_giant).
+planet(neptune, 4497.1, ice_giant).
+planet(pluto, 5906.4, dwarf_planet).
+
+% Rule to find the type of a planet
+find_planet_type(Planet, Type) :-
+    planet(Planet, _, Type).
+
+% Rule to find the distance of a planet from the Sun
+find_distance_from_sun(Planet, Distance) :-
+    planet(Planet, Distance, _).
+
+% Rule to find planets of a specific type
+find_planets_of_type(Type, Planet) :-
+    planet(Planet, _, Type).
+
+% Rule to find the closest planet to the Sun
+closest_planet(Planet) :-
+    planet(Planet, Distance, _),
+    not((planet(_, OtherDistance, _), OtherDistance < Distance)).
+
+% Rule to find the farthest planet from the Sun
+farthest_planet(Planet) :-
+    planet(Planet, Distance, _),
+    not((planet(_, OtherDistance, _), OtherDistance > Distance)).
+
+
+
+
+INPUT:?- find_planet_type(earth, Type).
