@@ -1,0 +1,14 @@
+% Base case: If there is only one disk, move it from source to destination
+hanoi(1, Source, Destination, _) :-
+    write('Move disk 1 from '), write(Source), write(' to '), write(Destination), nl.
+
+% Recursive case: Move n disks from Source to Destination using Auxiliary as the helper
+hanoi(N, Source, Destination, Auxiliary) :-
+    N > 1,
+    M is N - 1,
+    hanoi(M, Source, Auxiliary, Destination),   % Move N-1 disks from Source to Auxiliary
+    write('Move disk '), write(N), write(' from '), write(Source), write(' to '), write(Destination), nl,
+    hanoi(M, Auxiliary, Destination, Source).   % Move N-1 disks from Auxiliary to Destination
+
+
+INPUT:?- hanoi(3, a, c, b).
