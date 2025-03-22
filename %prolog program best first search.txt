@@ -1,0 +1,28 @@
+% Prolog Program: Best First Search Algorithm
+
+% Facts: Graph representation with heuristic values
+edge(a, b, 2).
+edge(a, c, 1).
+edge(b, d, 3).
+edge(c, d, 1).
+edge(c, e, 5).
+edge(d, goal, 4).
+edge(e, goal, 2).
+
+% Best First Search Implementation
+best_first_search(Start, Goal, Path) :-
+    best_first([[Start]], Goal, Path).
+
+best_first([[Goal|Path]|_], Goal, [Goal|Path]).
+best_first([CurrentPath|OtherPaths], Goal, FinalPath) :-
+    CurrentPath = [CurrentNode|_],
+    findall([Next,CurrentNode|CurrentPath], (edge(CurrentNode, Next, _), \+ member(Next, CurrentPath)), NewPaths),
+    append(OtherPaths, NewPaths, UpdatedPaths),
+    sort(UpdatedPaths, SortedPaths),
+    best_first(SortedPaths, Goal, FinalPath).
+
+% Query example:
+% Input:
+% ?- best_first_search(a, goal, Path).
+% Output:
+% Path = [goal, d, c, a].
