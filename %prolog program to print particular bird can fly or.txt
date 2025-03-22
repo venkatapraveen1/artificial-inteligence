@@ -1,0 +1,32 @@
+% Facts: Defining birds and their ability to fly
+can_fly(sparrow).
+can_fly(eagle).
+can_fly(pigeon).
+can_fly(parrot).
+
+cannot_fly(ostrich).
+cannot_fly(penguin).
+cannot_fly(kiwi).
+
+% Rule: A bird can fly if it is in the can_fly list
+bird_can_fly(Bird) :-
+    can_fly(Bird),
+    write(Bird), write(' can fly.'), nl.
+
+% Rule: A bird cannot fly if it is in the cannot_fly list
+bird_can_fly(Bird) :-
+    cannot_fly(Bird),
+    write(Bird), write(' cannot fly.'), nl.
+
+% Query example:
+% ?- bird_can_fly(sparrow).
+% Output: sparrow can fly.
+
+% ?- bird_can_fly(penguin).
+% Output: penguin cannot fly.
+
+
+
+
+INPUT:?- bird_can_fly(sparrow).
+?- bird_can_fly(penguin).
